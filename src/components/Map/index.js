@@ -1,0 +1,1 @@
+export {GoolgeApiWrapper} from "./Map"

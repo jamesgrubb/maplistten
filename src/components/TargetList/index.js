@@ -1,0 +1,1 @@
+export { StyledTargetList as default } from "./TargetList"
