@@ -37,7 +37,7 @@ const App = ({classNAme}) => {
   //FUNCTIONS
 
   const onTargetClick = ( id ) => {
-    
+
   }
 
   const clickMarker = (props, marker) => {
@@ -66,6 +66,7 @@ const App = ({classNAme}) => {
 
 console.log(selectedPlace)
   return (
+    <>
     <div className={classNAme}>
      <div className="map">
       <Map
@@ -80,14 +81,14 @@ console.log(selectedPlace)
       selectedPlace={selectedPlace.title}
       />
       </div>
-      <div className="targetList">
-        <TargetList 
-          targetList={locations}
-          targetClick={()=> onTargetClick(locations.id)}
-        />
-      </div>
     </div>
-
+    <div className="targetList">
+    <TargetList 
+      targetList={locations}
+      targetClick={()=> onTargetClick(locations.id)}
+    />
+  </div>
+  </>
   );
 }
 
@@ -95,7 +96,7 @@ export const StyledApp = styled(App)`
 disply: grid;
 grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 .map {
-template-column: 1 / span 1
+width: 50vw;
 }
 `
 
