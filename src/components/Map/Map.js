@@ -13,7 +13,7 @@ const style = {
   width: "50vw",
   height: "75vh",
   marginLeft: "auto",
-  marginRight: "auto"
+  marginRight: "0"
 };
 const MapContainer = ({
   zoom,
@@ -25,7 +25,8 @@ const MapContainer = ({
   onMarkerClick,
   onInfoWindowClose,
   onVisible,
-  selectedPlace
+  selectedPlace,
+  onMapClick
 }) => {
   console.log(google);
   return (
@@ -36,7 +37,8 @@ const MapContainer = ({
         zoom={zoom}
         initialCenter={center}
         center={center}
-        // style={style}
+        style={style}
+        onClick={onMapClick}
       >
         {locations.map((location, index) => {
           index += 1;

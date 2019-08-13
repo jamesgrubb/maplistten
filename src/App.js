@@ -30,8 +30,19 @@ const App = ({ className }) => {
   const [showInfoWindow, setShowInfoWIndow] = useState(false);
 
   //FUNCTIONS
-
-  const onTargetClick = id => {};
+  const selectTarget = locations => {
+    for (const createdMarker of markers) {
+      console.log(createdMarker);
+      if (createdMarker.props.id === locations.id) {
+        new createdMarker.props.google.maps.event.trigger(
+          createdMarker.marker,
+          `click`
+        );
+      }
+    }
+    console.log(locations);
+    zoomPlace(locations.fields.lat, locations.fields.lng);
+  };
 
   const clickMarker = (props, marker) => {
     zoomPlace(props.position.lat, props.position.lng);
@@ -46,6 +57,15 @@ const App = ({ className }) => {
     }
   };
 
+  const handleMapClick = () => {
+    if (showInfoWindow) {
+      setShowInfoWIndow(false);
+      setActiveMarker(null);
+      setSelectedPlace({});
+    }
+    setZoom(10);
+  };
+
   useEffect(() => {
     base(`advan-targets`)
       .select({ view: `Grid view` })
@@ -57,6 +77,9 @@ const App = ({ className }) => {
   console.log(selectedPlace);
   return (
     <>
+      <div className="targetList">
+        <TargetList targetList={locations} targetClick={selectTarget} />
+      </div>
       <div className={className}>
         <Map
           zoom={zoom}
@@ -68,13 +91,8 @@ const App = ({ className }) => {
           onMarker={activeMarker}
           onVisible={showInfoWindow}
           selectedPlace={selectedPlace.title}
+          onMapClick={handleMapClick}
         />
-        <div className="targetList">
-          <TargetList
-            targetList={locations}
-            targetClick={() => onTargetClick(locations.id)}
-          />
-        </div>
       </div>
     </>
   );

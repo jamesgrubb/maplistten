@@ -12,7 +12,7 @@ const TargetList = ({ className, targetList, targetClick }) => {
             <button
               className="button"
               aria-label={target.fields.name}
-              onClick={() => targetClick(target.id)}
+              onClick={() => targetClick(target)}
             >
               {target.fields.name}
             </button>
